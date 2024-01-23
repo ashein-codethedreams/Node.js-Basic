@@ -1,12 +1,12 @@
 const express = require("express");
 const app = express();
 
-app.get("/", () => {
-  console.log("you will get testing ..");
+app.get("/user", (req, res, next) => {
+  res.json({ name: "Ashein", age: 25, subject: "Node js" });
 });
 
-app.post("/post", () => {
-  console.log("you are requesting post route");
+app.post("/user", (req, res, next) => {
+  res.json({ message: "user registeration succeeded" });
 });
 
 //we have to write the following line after all destinated routes
