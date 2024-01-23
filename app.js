@@ -1,25 +1,24 @@
 const express = require("express");
 const app = express();
 
-app.get("/users", (req, res, next) => {
-  res.status(200).json([
-    { name: "Ashein", age: 25, subject: "Node js" },
-    { name: "Oak Oak", age: 25, subject: "Java" },
-  ]);
+let users = [
+  { id: 1, name: "Ashein", age: 23, subject: "Node js" },
+  { id: 2, name: "Oak Oak", age: 25, subject: "Java" },
+  { id: 3, name: "Mg Khant", age: 21, subject: "Flutter" },
+];
+
+app.get("/users", (req, res) => {
+  res.status(200).json(users);
 });
 
-app.post("/users", (req, res, next) => {
-  res.status(200).json({ message: "user registeration succeeded" });
-});
-
-app.patch("/users/:id/:name", (req, res, next) => {
+app.get("/users/:id", (req, res) => {
   let id = req.params.id;
-  let name = req.params.name;
-  res.status(200).json({ id, name });
-});
-app.delete("/users/:id", (req, res, next) => {
-  let id = req.params.id;
-  res.status(200).json({ message: `Delete user id is ${id}` });
+  let user = users.find((u) => u.id == id);
+  if (user) {
+    res.status(200).json(user);
+  } else {
+    res.send({ message: "user with that id not found" });
+  }
 });
 
 //we have to write the following line after all destinated routes
