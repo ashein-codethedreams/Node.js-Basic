@@ -39,6 +39,17 @@ app.post("/user", (req, res) => {
   res.json({ users });
 });
 
+app.patch("/users/:id", (req, res) => {
+  let id = req.params.id;
+  let editUser = users.find((u) => u.id == id);
+  if (editUser) {
+    editUser.name = req.body.name;
+    res.json({ users });
+  } else {
+    res.send({ message: "user with that id not found" });
+  }
+});
+
 //we have to write the following line after all destinated routes
 app.get("*", (req, res) => {
   res.json({ message: "No Route Found" });
