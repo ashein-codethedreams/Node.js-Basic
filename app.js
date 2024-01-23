@@ -50,6 +50,12 @@ app.patch("/users/:id", (req, res) => {
   }
 });
 
+app.delete("/users/:id", (req, res) => {
+  let id = req.params.id;
+  users = users.filter((u) => u.id != id);
+  res.json({ users });
+});
+
 //we have to write the following line after all destinated routes
 app.get("*", (req, res) => {
   res.json({ message: "No Route Found" });
