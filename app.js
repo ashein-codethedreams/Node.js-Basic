@@ -2,11 +2,11 @@ const express = require("express");
 const app = express();
 
 app.get("/user", (req, res, next) => {
-  res.json({ name: "Ashein", age: 25, subject: "Node js" });
+  res.status(200).json({ name: "Ashein", age: 25, subject: "Node js" });
 });
 
 app.post("/user", (req, res, next) => {
-  res.json({ message: "user registeration succeeded" });
+  res.status(200).json({ message: "user registeration succeeded" });
 });
 
 //we have to write the following line after all destinated routes
