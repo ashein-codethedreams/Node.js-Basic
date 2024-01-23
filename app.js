@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 
+app.use(express.json()); // JSON parsing
+
 let users = [
   { id: 1, name: "Ashein", age: 23, subject: "Node js" },
   { id: 2, name: "Oak Oak", age: 25, subject: "Java" },
@@ -19,6 +21,22 @@ app.get("/users/:id", (req, res) => {
   } else {
     res.send({ message: "user with that id not found" });
   }
+});
+
+app.post("/user", (req, res) => {
+  let id = req.body.id;
+  let name = req.body.name;
+  let age = req.body.age;
+  let subject = req.body.subject;
+  let newUser = {
+    id: id,
+    name: name,
+    age: age,
+    subject: subject,
+  };
+  console.log(newUser);
+  users.push(newUser);
+  res.json({ users });
 });
 
 //we have to write the following line after all destinated routes
