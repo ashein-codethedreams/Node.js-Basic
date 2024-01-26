@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 
@@ -9,4 +10,7 @@ app.use("/users", userRoute);
 const postRoute = require("./routes/post");
 app.use("/posts", postRoute);
 
-app.listen(3000, console.log("Server is running at port 3000 ..."));
+app.listen(
+  process.env.PORT,
+  console.log(`Server is running at port ${process.env.PORT} ...`)
+);
