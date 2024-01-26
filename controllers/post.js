@@ -7,7 +7,7 @@ const getOne = async (req, res, next) => {
 };
 
 const post = async (req, res, next) => {
-  res.json({ message: "Add new post" });
+  res.json({ message: "Add new post", result: req.body });
 };
 
 const patch = async (req, res, next) => {
