@@ -12,6 +12,9 @@ app.use("/users", userRoute);
 const postRoute = require("./routes/post");
 app.use("/posts", postRoute);
 
+const testroute = require("./routes/test");
+app.use("/tests", testroute);
+
 app.listen(
   process.env.PORT,
   console.log(`Server is running at port ${process.env.PORT} ...`)

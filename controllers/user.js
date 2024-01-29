@@ -1,3 +1,5 @@
+const DB = require("../dbs/user")
+
 let users = [
   { id: 1, name: "Ashein", age: 23, subject: "Node js" },
   { id: 2, name: "Oak Oak", age: 25, subject: "Java" },
