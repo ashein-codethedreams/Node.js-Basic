@@ -15,6 +15,14 @@ app.use("/posts", postRoute);
 const testroute = require("./routes/test");
 app.use("/tests", testroute);
 
+app.use((err, req, res, next) => {
+  err.status = err.status || 500;
+  res.status(err.status).json({
+    condition: false,
+    message: err.message,
+  });
+});
+
 app.listen(
   process.env.PORT,
   console.log(`Server is running at port ${process.env.PORT} ...`)
