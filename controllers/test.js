@@ -10,8 +10,10 @@ const getOne = async (req, res) => {
   res.json({ message: "get test id is " + req.params.id });
 };
 
-const post = async (req, res) => {
-  res.json({ message: "Add new post", result: req.body });
+const add = async (req, res) => {
+  let newTest = new DB(req.body);
+  let result = await newTest.save();
+  Helper.formattedMessage(res, "Add New Test", result);
 };
 
 const patch = async (req, res) => {
@@ -25,7 +27,7 @@ const drop = async (req, res) => {
 module.exports = {
   getAll,
   getOne,
-  post,
+  add,
   patch,
   drop,
 };

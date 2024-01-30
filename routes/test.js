@@ -3,7 +3,7 @@ const controller = require("../controllers/test");
 
 router.get("/", controller.getAll);
 
-router.post("/", controller.post);
+router.post("/", controller.add);
 
 router
   .route("/:id")
