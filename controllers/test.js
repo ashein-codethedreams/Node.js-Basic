@@ -7,7 +7,9 @@ const getAll = async (req, res, next) => {
 };
 
 const getOne = async (req, res) => {
-  res.json({ message: "get test id is " + req.params.id });
+  let id = req.params.id;
+  let result = await DB.findById(id);
+  Helper.formattedMessage(res, "Get Test by id", result);
 };
 
 const add = async (req, res) => {
