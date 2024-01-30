@@ -8,8 +8,8 @@ const getAll = async (req, res, next) => {
 
 const getOne = async (req, res) => {
   let id = req.params.id;
-  let result = await DB.findById(id);
-  Helper.formattedMessage(res, "Get Test by id", result);
+  let test = await DB.findById(id);
+  Helper.formattedMessage(res, "Get Test by id", test);
 };
 
 const add = async (req, res) => {
@@ -19,11 +19,25 @@ const add = async (req, res) => {
 };
 
 const patch = async (req, res) => {
-  res.json({ message: "edit test id is " + req.params.id });
+  let id = req.params.id;
+  let test = await DB.findById(id);
+  if (test) {
+    await DB.findByIdAndUpdate(test._id, req.body);
+    let updatedTest = await DB.findById(test._id);
+    Helper.formattedMessage(res, "Update Test", updatedTest);
+  } else {
+    res.json({ msg: "id not found!" });
+  }
 };
 
 const drop = async (req, res) => {
-  res.json({ message: "delete test id is " + req.params.id });
+  let test = await DB.findById(req.params.id);
+  if (test) {
+    await DB.findByIdAndDelete(test._id);
+    Helper.formattedMessage(res, "Delete Test");
+  } else {
+    res.json({ msg: "id not found!" });
+  }
 };
 
 module.exports = {
