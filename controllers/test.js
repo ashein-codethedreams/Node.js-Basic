@@ -1,9 +1,9 @@
-const DB =require("../dbs/test")
-const Helper = require("../utils/helper")
+const DB = require("../dbs/test");
+const Helper = require("../utils/helper");
 
 const getAll = async (req, res, next) => {
- let tests = await DB.find();
-Helper.formattedMessage(res,"All Tests",tests)
+  let tests = await DB.find();
+  Helper.formattedMessage(res, "All Tests", tests);
 };
 
 const getOne = async (req, res) => {
