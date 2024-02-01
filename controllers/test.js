@@ -8,7 +8,7 @@ const getAll = async (req, res, next) => {
 
 const getOne = async (req, res) => {
   let id = req.params.id;
-  let test = await DB.findById(id);
+  let test = await DB.findById(id).populate("user","-__V");
   Helper.formattedMessage(res, "Get Test by id", test);
 };
 
